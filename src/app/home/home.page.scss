@@ -1,0 +1,348 @@
+ion-header {
+  position: absolute;
+  ion-label {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      width: auto;
+      height: 64px;
+    }
+  }
+}
+
+.floatingWave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  padding: 16px;
+
+  ion-button {
+    width: auto;
+
+    svg {
+      width: auto;
+      height: 100%;
+    }
+  }
+}
+
+ion-content {
+  background: #000000;
+  --ion-background-color: #000000;
+}
+
+ion-header,
+ion-toolbar {
+  --background: transparent;
+  --ion-background-color: transparent;
+  background: transparent;
+  * {
+    --ion-background-color: transparent;
+    background: transparent;
+  }
+}
+
+ion-grid {
+  padding-top: 3%;
+  height: 100%;
+}
+
+ion-row {
+  height: 100%;
+  ion-col {
+    * {
+      color: #ffffff;
+      color: #ababab;
+    }
+    &:first-child {
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      padding-top: 8%;
+      h1 {
+        font-size: 77px;
+        font-weight: 700;
+      }
+
+      @media (max-width: 800px) {
+        h1 {
+          font-size: 35px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+.lottieContainer {
+  position: absolute;
+  right: 0;
+  ng-lottie {
+    height: 100%;
+    width: 100%;
+
+    * {
+      transition: 4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  ion-row {
+    ion-col {
+      &:first-child {
+        padding-top: 32%;
+      }
+    }
+  }
+  .lottieContainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    bottom: 30%;
+  }
+}
+
+ion-footer {
+  ion-title {
+    position: absolute;
+    z-index: 9999999999999;
+    cursor: pointer;
+    /* left: 50%; */
+    /* transform: translate(7px, -19px); */
+    top: 0;
+    right: 47%;
+  }
+  ion-buttons {
+    justify-content: flex-end;
+    width: 100%;
+    &::before {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 50%;
+      background: #707070;
+    }
+  }
+
+  ion-button {
+    width: 70px;
+    height: 70px;
+    outline-color: #707070;
+    margin: 16px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 300;
+    text-align: right;
+  }
+
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 15px;
+    }
+  }
+}
+
+/* headphone labelling*/
+
+.lottieContainer {
+  position: absolute;
+  right: 25%;
+  margin-top: 5%;
+  max-width: 50%;
+}
+
+.frameLabel {
+  position: absolute;
+  right: 0;
+  z-index: 999999999999;
+  bottom: 36%;
+  margin-right: 32px;
+
+  h1 {
+    color: #ababab;
+    font-size: 25px;
+    font-weight: 200;
+    max-width: 400px;
+    white-space: normal;
+  }
+
+  ._20h1_line {
+    &::before {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 400px;
+      background: #707070;
+      transform: translate3d(-391px, -120px, 10px) rotate(34deg);
+      position: absolute;
+    }
+  }
+
+  ._40h1_line {
+    &::before {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 484px;
+      background: #707070;
+      transform: translate3d(-492px, -8px, 19px) rotate(9deg);
+      position: absolute;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 505px;
+      background: #707070;
+      transform: translate3d(-494px, -173px, 19px) rotate(27deg);
+      position: absolute;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  ion-row {
+    ion-col {
+      h1 {
+        font-size: 65px !important;
+      }
+      .frameDescription {
+        h1 {
+          font-size: 38.5px !important;
+        }
+
+        p {
+          font-size: 19px !important;
+          line-height: 27px !important;
+        }
+      }
+    }
+  }
+  .frameLabel {
+    ._20h1_line {
+      &::before {
+        transform: translate3d(-239px, -146px, 10px) rotate(41deg);
+      }
+    }
+
+    ._40h1_line {
+      &::before {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 410px;
+        background: #707070;
+        transform: translate3d(-404px, -8px, 19px) rotate(9deg);
+        position: absolute;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 505px;
+        background: #707070;
+        transform: translate3d(-494px, -173px, 19px) rotate(27deg);
+        position: absolute;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  ion-row {
+    ion-col {
+      h1 {
+        font-size: 45px !important;
+      }
+      .frameDescription {
+        h1 {
+          font-size: 38.5px !important;
+        }
+
+        p {
+          font-size: 19px !important;
+          line-height: 27px !important;
+        }
+      }
+    }
+  }
+
+  .lottieContainer {
+    right: 10%;
+  }
+  .frameLabel {
+    bottom: 20%;
+    ._20h1_line {
+      &::before {
+        transform: translate3d(-51px, -257px, 10px) rotate(89deg);
+      }
+    }
+
+    ._40h1_line {
+      &::before {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 272px;
+        background: #707070;
+        transform: translate3d(-52px, -131px, 19px) rotate(70deg);
+        position: absolute;
+      }
+
+      &::after {
+        width: 400px;
+        transform: translate3d(-216px, -247px, 19px) rotate(70deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .frameLabel {
+    h1 {
+      font-size: 15px;
+      padding: 16px;
+      &::after {
+        display: none !important;
+      }
+      &::before {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) and (min-width: 600px) {
+  ion-row {
+    ion-col {
+      padding-top: 16% !important;
+    }
+  }
+}
+
+ion-row {
+  ion-col {
+    .frameDescription {
+      h1 {
+        color: #ababab;
+        font-size: 38.5px;
+        font-weight: 600;
+      }
+
+      p {
+        color: #ababab;
+        font-size: 25px;
+        font-weight: 300;
+        white-space: normal;
+        line-height: 37px;
+      }
+    }
+  }
+}
