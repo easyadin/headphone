@@ -39,52 +39,56 @@ export class PlaygroundPage implements OnInit, AfterViewInit {
     scene.background = new THREE.Color(0xcccccc);
     scene.fog = new THREE.FogExp2(0xcccccc, 0.002);
 
+    // scene.add(new THREE.AxesHelper(500));
     // controls
     controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 0, 0);
 
     controls.enabled = true;
     controls.enableRotate = true;
-    controls.enablePan = false;
+    controls.enablePan = true;
     controls.enableZoom = true;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 70.0;
 
-    controls.rotateSpeed = 2
-
+    controls.rotateSpeed = 0.07;
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.screenSpacePanning = true;
+    controls.dampingFactor = 1;
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.05;
+    // controls.screenSpacePanning = true;
 
     // controls.minDistance = 100;
     // controls.maxDistance = 500;
 
     // controls.maxPolarAngle = Math.PI / 2;
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x000000, 0.4));
+    // lighting setup
+    scene.add(new THREE.HemisphereLight(0xffeeb1, 0x080820, 4));
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.toneMappingExposure = 2.3;
+    renderer.shadowMap.enabled = true;
+    // spotlight
+    var spotlight = new THREE.SpotLight(0xffa95c, 4);
+    spotlight.castShadow = true;
+    spotlight.shadow.bias = -0.001;
+    spotlight.shadow.mapSize.width = 1024 * 4;
+    spotlight.shadow.mapSize.height = 1024 * 4;
 
-    var light1 = new THREE.DirectionalLight(0xffffff);
-    light1.position.set(1, 1, 1);
-    scene.add(light1);
+    scene.add(spotlight)
 
-    var light2 = new THREE.DirectionalLight(0x002288);
-    light2.position.set(- 1, - 1, - 1);
-    scene.add(light2);
 
-    var light3 = new THREE.AmbientLight(0x222222);
-    scene.add(light3);
-
-    dirLight = new THREE.DirectionalLight(0xffffff, 1);
-    dirLight.position.set(0, 0, 8);
-    scene.add(dirLight);
-
+    // load model
     var loader = new GLTFLoader();
 
-    loader.load('../../assets/main/headphone-playground.gltf', function (gltf) {
-      var model = gltf.scene;
-      model.position.set(0, -20, 0);
-      model.traverse(function (child) {
-        child.traverse(c => {
-          c.castShadow = true;
-        });
+    loader.load('../../assets/main/headphone-playground.gltf', (gltf) => {
+      var model = gltf.scene.children[0];
+      model.position.set(0, -10, 0);
+      model.traverse(child => {
+        child.traverse(n => {
+          n.castShadow = true;
+          n.receiveShadow = true;
+        })
       });
 
       scene.add(model);
@@ -104,6 +108,12 @@ export class PlaygroundPage implements OnInit, AfterViewInit {
 
     // animate
     function animate() {
+      spotlight.position.set(
+        camera.position.x + 10,
+        camera.position.y + 10,
+        camera.position.z + 10
+      );
+
       requestAnimationFrame(animate);
       controls.update();
       renderer.render(scene, camera);
